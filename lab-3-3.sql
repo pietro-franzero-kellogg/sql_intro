@@ -1,7 +1,7 @@
 -- What were the winningest teams in each season of the 
 -- modern era (from 1960-present), listed by winningest teams first?
 
--- Expected result: 61 rows, starting with
+-- Expected result: 67 rows, starting with
 --
 -- +------+-------------------------------+-----------+
 -- | 2001 | Seattle Mariners              | 116       |
@@ -15,4 +15,25 @@
 -- | 2019 | Houston Astros                | 107       |
 -- | 2004 | St. Louis Cardinals           | 105       |
 
+SELECT
+    year, name, wins
+FROM (
+    SELECT year, name, wins, rank () over (partition by year order by wins desc) as winrank
+    FROM teams
+    WHERE year >= 1960
+) t
+WHERE winrank = 1
+ORDER BY wins DESC;
 
+-- SELECT count(1) 
+-- FROM (
+--     SELECT
+--         year, name, wins
+--     FROM (
+--         SELECT year, name, wins, rank () over (partition by year order by wins desc) as winrank
+--         FROM teams
+--         WHERE year >= 1960
+--     ) t
+--     WHERE winrank = 1
+--     ORDER BY wins DESC
+-- ) t;

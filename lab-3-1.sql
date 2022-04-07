@@ -14,4 +14,9 @@
 -- | 2020 | 30       |
 -- +------+----------+
 
+SELECT year, count(distinct id) FROM teams GROUP BY year ORDER BY year;
 
+-- SELECT count(1) 
+-- FROM (
+--     SELECT year, count(distinct id) FROM teams GROUP BY year ORDER BY year
+-- ) t;
