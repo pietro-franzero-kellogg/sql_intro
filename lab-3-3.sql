@@ -1,7 +1,7 @@
 -- What were the winningest teams in each season of the 
 -- modern era (from 1960-present), listed by winningest teams first?
 
--- Expected result: 67 rows, starting with
+-- Expected result: 61 rows, starting with
 --
 -- +------+-------------------------------+-----------+
 -- | 2001 | Seattle Mariners              | 116       |

@@ -24,4 +24,24 @@
 -- | Billy      | Hamilton  |
 -- | Ian        | Happ      |
 
+SELECT first_name, last_name
+FROM
+    (SELECT id FROM teams WHERE year = 2020 AND name = 'Chicago Cubs') team
+INNER JOIN
+    (SELECT DISTINCT player_id, team_id FROM stats) stats on (team.id = stats.team_id)
+INNER JOIN
+    (SELECT DISTINCT id, first_name, last_name FROM players) players on (stats.player_id = players.id)
+ORDER BY last_name;
 
+-- SELECT
+--     count(1)
+-- FROM (
+-- SELECT first_name, last_name
+--     FROM
+--         (SELECT id FROM teams WHERE year = 2020 AND name = 'Chicago Cubs') team
+--     INNER JOIN
+--         (SELECT DISTINCT player_id, team_id FROM stats) stats on (team.id = stats.team_id)
+--     INNER JOIN
+--         (SELECT DISTINCT id, first_name, last_name FROM players) players on (stats.player_id = players.id)
+--     ORDER BY last_name
+-- ) t;
